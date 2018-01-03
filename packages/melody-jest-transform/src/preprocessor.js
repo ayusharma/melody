@@ -19,6 +19,9 @@ import { extension as CoreExtension } from 'melody-extension-core';
 import idomPlugin from 'melody-plugin-idom';
 import * as p from 'process';
 import findBabelConfig from 'find-babel-config';
+import Logger from 'melody-logger';
+
+const logger = new Logger();
 
 export function getBabelConf() {
     const { config } = findBabelConfig.sync(p.cwd());
@@ -38,8 +41,8 @@ export function process(src, path) {
 export function transformer(src, path, options = {}) {
     const plugins = options.plugins || [CoreExtension, idomPlugin];
     const babelConfig = options.babel || getBabelConf();
-
-    const compiledMelody = toString(compile(path, src, ...plugins), src).code;
+    const compiledMelody = toString(compile(path, src, logger, ...plugins), src)
+        .code;
     if (options.noBabel) {
         return compiledMelody;
     }

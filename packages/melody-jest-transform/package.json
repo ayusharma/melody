@@ -12,7 +12,8 @@
     "babel-core": "^6.18.0",
     "find-babel-config": "^1.0.1",
     "melody-compiler": "1.0.2",
-    "melody-extension-core": "1.0.2"
+    "melody-extension-core": "1.0.2",
+    "melody-logger": "../melody-logger"
   },
   "devDependencies": {
     "melody-plugin-idom": "1.0.2",

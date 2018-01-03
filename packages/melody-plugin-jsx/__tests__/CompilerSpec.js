@@ -18,6 +18,9 @@ import { extension as coreExtension } from 'melody-extension-core';
 import jsxPlugin from '../src';
 import fs from 'fs';
 import path from 'path';
+import Logger from 'melody-logger';
+
+const logger = new Logger();
 
 describe('Compiler', function() {
     getFixtures('success').forEach(({ name, twigPath }) => {
@@ -29,7 +32,7 @@ describe('Compiler', function() {
     getFixtures('error').forEach(({ name, twigPath }) => {
         it('should fail transforming ' + name.replace(/_/g, ' '), function() {
             expect(
-                fixture.bind(null, twigPath, name),
+                fixture.bind(null, twigPath, name)
             ).toThrowErrorMatchingSnapshot();
         });
     });
@@ -46,7 +49,13 @@ function getFixtures(type) {
 function fixture(twigPath, name) {
     const twig = fs.readFileSync(twigPath).toString();
 
-    const jsAst = compile(name + '.twig', twig, coreExtension, jsxPlugin);
+    const jsAst = compile(
+        name + '.twig',
+        twig,
+        logger,
+        coreExtension,
+        jsxPlugin
+    );
     const actual = toString(jsAst, twig).code;
 
     expect(`\n${actual}\n`).toMatchSnapshot();

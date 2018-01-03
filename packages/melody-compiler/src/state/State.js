@@ -20,7 +20,7 @@ import { relative } from 'path';
 import * as random from 'random-seed';
 
 export default class State {
-    constructor(file: File, source: String) {
+    constructor(file: File, source: String, logger) {
         this.file = file;
         this.source = source;
         this.template = file.template;
@@ -38,6 +38,7 @@ export default class State {
         this.functionMap = Object.create(null);
         this._usedIdentifiers = Object.create(null);
         this._spacelessStack = [];
+        this.logger = logger;
     }
 
     generateKey() {
@@ -74,6 +75,20 @@ export default class State {
             errorMessage += '\n\n' + advice;
         }
         throw new Error(errorMessage);
+    }
+
+    warn(message, pos, advice, length = 1) {
+        let warnMessage = `${message}\n`;
+        warnMessage += codeFrame({
+            rawLines: this.source,
+            lineNumber: pos.line,
+            colNumber: pos.column,
+            length,
+        });
+        if (advice) {
+            warnMessage += '\n\n' + advice;
+        }
+        this.logger.warn(warnMessage);
     }
 
     markIdentifier(name) {

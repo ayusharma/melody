@@ -29,11 +29,16 @@ import generate from 'babel-generator';
 import { TokenTypes } from 'melody-parser';
 export { Template, File, TokenTypes };
 
-export function compile(fileName: String, source: String, ...extensions) {
+export function compile(
+    fileName: String,
+    source: String,
+    logger,
+    ...extensions
+) {
     const root = parseString(fileName, source, ...extensions);
     const template = new Template(root.expressions),
         file = new File(fileName, template),
-        state = new State(file, source);
+        state = new State(file, source, logger);
     let analyseVisitor = analyse,
         convertVisitor = convert;
     for (const ext of extensions) {

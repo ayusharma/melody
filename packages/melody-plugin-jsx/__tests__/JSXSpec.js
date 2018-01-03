@@ -17,10 +17,15 @@ import { compile, toString } from 'melody-compiler';
 import { extension as coreExtension } from 'melody-extension-core';
 import jsxPlugin from '../src';
 import { stripIndent } from 'common-tags';
+import Logger from 'melody-logger';
+
+const logger = new Logger();
 
 function getOutput(code) {
-    return toString(compile('test.twig', code, coreExtension, jsxPlugin), code)
-        .code;
+    return toString(
+        compile('test.twig', code, logger, coreExtension, jsxPlugin),
+        code
+    ).code;
 }
 
 describe('JSX', function() {

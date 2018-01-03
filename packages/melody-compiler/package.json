@@ -32,6 +32,7 @@
   ],
   "devDependencies": {
     "melody-extension-core": "1.0.2",
+    "melody-logger": "../melody-logger",
     "melody-plugin-idom": "1.0.2",
     "rollup-plugin-babel": "^2.6.1"
   }

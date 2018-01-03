@@ -17,6 +17,7 @@ import { toString, compile } from 'melody-compiler';
 import { extension as CoreExtension } from 'melody-extension-core';
 import { getOptions } from 'loader-utils';
 import { isString, isObject } from 'lodash';
+import Logger from 'melody-logger';
 
 module.exports = function loader(content) {
     this.cacheable();
@@ -25,7 +26,12 @@ module.exports = function loader(content) {
         plugins: [],
     };
 
-    const args = [this.resourcePath, content, CoreExtension];
+    // setting up logger with webpack logging  methods
+    const logger = new Logger({
+        warn: this.emitWarning,
+        error: this.emitError,
+    });
+    const args = [this.resourcePath, content, logger, CoreExtension];
     if (loaderOptions.plugins) {
         for (const pluginName of loaderOptions.plugins) {
             if (isString(pluginName)) {
