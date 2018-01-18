@@ -26,7 +26,7 @@
         "prettier": "prettier --write \"./packages/melody-*/src/**/*.[tj]s\"",
         "release": "./bin/release.sh",
         "test": "jest",
-        "test-travis": "NODE_ENV=test jest --coverage --runInBand --no-cache",
+        "test-circle": "NODE_ENV=test jest --coverage --runInBand --no-cache",
         "test-accept": "cross-env NODE_ENV=mocha lerna run test-accept",
         "test-debug": "node --inspect --debug-brk ./node_modules/jest-cli/bin/jest.js -i"
     },
