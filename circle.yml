@@ -29,5 +29,6 @@ test:
     - yarn run test-circle
     - nvm alias default 8
     - yarn run test-circle
+    - yarn run coverage
   post:
     - yarn run posttest
