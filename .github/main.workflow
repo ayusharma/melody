@@ -11,7 +11,7 @@ action "build" {
 action "test" {
   uses = "./actions/yarn"
   needs = ["build"]
-  args = "run test-ci"
+  args = "run test"
 }
 
 action "lint" {
