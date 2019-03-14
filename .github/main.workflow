@@ -1,6 +1,6 @@
 workflow "build and test" {
   on = "push"
-  resolves = ["yarn"]
+  resolves = ["test", "lint"]
 }
 
 action "build" {
@@ -8,8 +8,14 @@ action "build" {
   args = "install --frozen-lockfile --non-interactive"
 }
 
-action "yarn" {
+action "test" {
   uses = "./actions/yarn"
   needs = ["build"]
-  args = "run test"
+  args = "run test-ci"
+}
+
+action "lint" {
+  uses = "./actions/yarn"
+  needs = ["build"]
+  args = "run lint"
 }
