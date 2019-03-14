@@ -31,7 +31,7 @@
         "release": "./bin/release.sh",
         "release-ci": "./bin/ci-release.sh",
         "test": "TZ=Europe/London jest",
-        "test-ci": "TZ=Europe/London jest --coverage --runInBand --no-cache && cat ./coverage/lcov.info | coveralls",
+        "test-ci": "yarn run test --coverage --runInBand --no-cache && cat ./coverage/lcov.info | coveralls",
         "test-debug": "TZ=Europe/London node --inspect-brk ./node_modules/jest/bin/jest.js -i"
     },
     "devDependencies": {
