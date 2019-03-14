@@ -10,5 +10,6 @@ LABEL com.github.actions.description="Wraps the yarn CLI to enable common yarn c
 LABEL com.github.actions.icon="package"
 
 COPY "entrypoint.sh" "/entrypoint.sh"
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["help"]
