@@ -7,8 +7,6 @@ LABEL "maintainer"=" trivago <ayush.sharma@trivago.com>"
 
 LABEL com.github.actions.name="GitHub Action for Yarn"
 LABEL com.github.actions.description="Wraps the yarn CLI to enable common yarn commands."
-LABEL com.github.actions.icon="code"
-LABEL com.github.actions.color="blue"
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 RUN chmod +x /entrypoint.sh
