@@ -6,6 +6,6 @@ workflow "New workflow" {
 }
 
 action "Install" {
-  uses = "./actions/yarn"
+  uses = "trivago/melody/actions/yarn@github-actions"
   args = "install --frozen-lockfile --non-interactive"
 }
