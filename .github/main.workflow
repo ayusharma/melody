@@ -1,6 +1,9 @@
 workflow "build and test" {
   on = "push"
-  resolves = ["test", "lint"]
+  resolves = [
+    "lint",
+    "./actions/yarn",
+  ]
 }
 
 action "build" {
@@ -18,4 +21,10 @@ action "lint" {
   uses = "./actions/yarn"
   needs = ["build"]
   args = "run lint"
+}
+
+action "./actions/yarn" {
+  uses = "./actions/yarn"
+  needs = ["test"]
+  args = "run bundlesize"
 }
