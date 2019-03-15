@@ -2,7 +2,7 @@ workflow "build and test" {
   on = "push"
   resolves = [
     "lint",
-    "bundlesize",
+    "E2E: Verdaccio",
   ]
 }
 
@@ -27,4 +27,10 @@ action "bundlesize" {
   uses = "./actions/yarn"
   needs = ["test"]
   args = "run bundlesize"
+}
+
+action "E2E: Verdaccio" {
+  uses = "./actions/verdaccio"
+  needs = ["bundlesize"]
+  args = "-ddd"
 }
