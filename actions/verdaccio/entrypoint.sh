@@ -26,4 +26,4 @@ sh -c "nohup verdaccio --config $HOME/.config/verdaccio/config.yaml &>$tmp_regis
 sh -c "npm set registry https://registry.npmjs.org/"
 sh -c "npx npm-auth-to-token@1.0.0 -u test -p test -e test@test.local -r $local_registry"
 sh -c "npm whoami --registry $local_registry"
-sh -c "yarn lerna publish --yes --npm-client=npm --force-publish=* --skip-git --exact --npm-tag=latest --registry $local_registry"
+sh -c "yarn lerna publish --npm-client=npm --skip-git --exact --force-publish=* --yes --npm-tag=latest --registry $local_registry"
