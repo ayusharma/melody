@@ -2,7 +2,7 @@ workflow "build and test" {
   on = "push"
   resolves = [
     "lint",
-    "./actions/yarn",
+    "bundlesize",
   ]
 }
 
@@ -23,7 +23,7 @@ action "lint" {
   args = "run lint"
 }
 
-action "./actions/yarn" {
+action "bundlesize" {
   uses = "./actions/yarn"
   needs = ["test"]
   args = "run bundlesize"
