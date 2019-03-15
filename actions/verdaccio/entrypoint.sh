@@ -27,8 +27,6 @@ sh -c "npm set registry https://registry.npmjs.org/"
 sh -c "npx npm-auth-to-token@1.0.0 -u test -p test -e test@test.local -r $local_registry"
 sh -c "npm whoami --registry $local_registry"
 
-sh -c "yarn lerna publish --npm-client=npm --skip-git --exact --force-publish=* --canary=commit --yes --npm-tag=next --registry $local_registry"
-
 if [ "$GITHUB_REF" = "master" ]; then
   # RELEASE AS @NEXT
 	sh -c "yarn lerna publish --npm-client=npm --skip-git --exact --force-publish=* --canary=commit --yes --npm-tag=next --registry $local_registry"
