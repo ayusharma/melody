@@ -57,5 +57,5 @@ action "Node 6" {
 action "node 6: test" {
   uses = "./actions/cli"
   needs = ["Node 6"]
-  runs = "'node -v' 'yarn' 'yarn run test'"
+  runs = "'yarn' 'yarn run test'"
 }
