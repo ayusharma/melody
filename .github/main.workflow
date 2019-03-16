@@ -43,3 +43,19 @@ action "verdaccio" {
   needs = ["test"]
   args = "-ddd"
 }
+
+workflow "node6" {
+  on = "push"
+  resolves = ["setup Node 6"]
+}
+
+action "nvm" {
+  uses = "./actions/nvm"
+  args = "install 6"
+}
+
+action "setup Node 6" {
+  uses = "./actions/nvm"
+  needs = ["nvm"]
+  args = "use 6"
+}
