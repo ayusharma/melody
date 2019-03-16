@@ -2,8 +2,12 @@
 
 set -e
 
-. /root/.bashrc
+source /root/.nvm/nvm.sh
+source /root/.profile
+source /root/.bashrc
 
-for ARG in "$@"; do
-    $ARG
-done
+sh -c "nvm"
+
+# for ARG in "$@"; do
+#     $ARG
+# done

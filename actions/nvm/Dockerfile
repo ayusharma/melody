@@ -16,8 +16,6 @@ ENV NVM_DIR /usr/local/nvm
 # https://github.com/creationix/nvm#install-script
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
 
-RUN echo "source $NVM_DIR/nvm.sh" | bash
-
 # confirm installation
 RUN node -v
 RUN npm -v
