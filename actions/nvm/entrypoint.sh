@@ -2,7 +2,7 @@
 
 set -e
 
-source /root/.nvm/nvm.sh
+source /usr/local/nvm/.nvm/nvm.sh
 source /root/.profile
 source /root/.bashrc
 
