@@ -46,10 +46,16 @@ action "verdaccio" {
 
 workflow "node6" {
   on = "push"
-  resolves = ["nvm"]
+  resolves = ["./actions/cli"]
 }
 
-action "nvm" {
-  uses = "./actions/nvm"
+action "Node 6" {
+  uses = "./actions/cli"
   args = "'nvm install 6' 'nvm use 6'"
+}
+
+action "./actions/cli" {
+  uses = "./actions/cli"
+  needs = ["Node 6"]
+  args = "'yarn' 'yarn run test'"
 }
