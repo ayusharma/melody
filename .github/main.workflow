@@ -51,7 +51,7 @@ workflow "node6" {
 
 action "nvm" {
   uses = "./actions/nvm"
-  args = "install 6"
+  args = "install v6"
 }
 
 action "setup Node 6" {
