@@ -2,9 +2,10 @@ workflow "build and test" {
   on = "push"
   resolves = [
     "lint",
-    "verdaccio",
     "coverage",
-    "\t./actions/verdaccio",
+    "bundlesize",
+    "verdaccio",
+    "test",
   ]
 }
 
@@ -31,19 +32,14 @@ action "bundlesize" {
   args = "run bundlesize"
 }
 
-action "verdaccio" {
-  uses = "./actions/verdaccio"
-  needs = ["bundlesize"]
-  args = "-ddd"
-}
-
 action "coverage" {
   uses = "./actions/yarn"
   needs = ["test"]
   args = "run coverage"
 }
 
-action "\t./actions/verdaccio" {
-  uses = "\t./actions/verdaccio"
+action "verdaccio" {
+  uses = "./actions/verdaccio"
   needs = ["test"]
+  args = "-ddd"
 }
