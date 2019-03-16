@@ -11,10 +11,16 @@ RUN apt-get update \
 
 # nvm environment variables
 ENV NVM_DIR /usr/local/nvm
+ENV HOME /root
 
 # install nvm
 # https://github.com/creationix/nvm#install-script
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+
+# nvm
+RUN echo 'export NVM_DIR="$NVM_DIR"'                                       >> "$HOME/.bashrc"
+RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.bashrc"
+RUN echo '[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # This loads nvm bash_completion' >> "$HOME/.bashrc"
 
 # confirm installation
 RUN node -v
