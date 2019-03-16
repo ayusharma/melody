@@ -26,7 +26,7 @@ RUN echo '[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # Th
 RUN node -v
 RUN npm -v
 
-COPY "entrypoint.sh" "/entrypoint.sh"
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+COPY "entrypoint.sh" "/root/entrypoint.sh"
+RUN chmod +x /root/entrypoint.sh
+ENTRYPOINT ["/root/entrypoint.sh"]
 CMD ["help"]
