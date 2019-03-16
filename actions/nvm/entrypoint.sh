@@ -6,7 +6,7 @@ source /usr/local/nvm/nvm.sh
 source /root/.profile
 source /root/.bashrc
 
-sh -c "nvm"
+bash -c "nvm"
 
 # for ARG in "$@"; do
 #     $ARG
