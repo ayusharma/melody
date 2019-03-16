@@ -2,4 +2,6 @@
 
 set -e
 
-sh -c "nvm $*"
+for ARG in "$@"; do
+    $ARG
+done
