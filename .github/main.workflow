@@ -46,16 +46,10 @@ action "verdaccio" {
 
 workflow "node6" {
   on = "push"
-  resolves = ["setup Node 6"]
+  resolves = ["nvm"]
 }
 
 action "nvm" {
   uses = "./actions/nvm"
-  args = "install v6"
-}
-
-action "setup Node 6" {
-  uses = "./actions/nvm"
-  needs = ["nvm"]
-  args = "use 6"
+  args = "'nvm install 6' 'nvm use 6'"
 }
