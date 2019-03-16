@@ -24,7 +24,7 @@ ENV PATH $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
 RUN /bin/bash -c 'source $NVM_DIR/nvm.sh'
 
 # confirm installation
-RUN nvm -v
+RUN /bin/bash -c 'nvm -v'
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 RUN chmod +x /entrypoint.sh
