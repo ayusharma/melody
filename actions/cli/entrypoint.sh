@@ -16,5 +16,5 @@ if [ -n "$NPM_AUTH_TOKEN" ]; then
 fi
 
 for ARG in "$@"; do
-    sh -c "$ARG"
+  $ARG
 done
