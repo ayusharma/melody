@@ -55,7 +55,7 @@ action "Node 6" {
 }
 
 action "node 6: test" {
-  uses = "./actions/cli"
+  uses = "./actions/nvm"
   needs = ["Node 6"]
   args = "'node -v' 'yarn' 'yarn run test'"
 }
