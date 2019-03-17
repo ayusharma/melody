@@ -44,26 +44,9 @@ action "verdaccio" {
   args = "-ddd"
 }
 
-workflow "Node Versions" {
+workflow "node 10" {
   on = "push"
-  resolves = ["node 6: test", "node 10: test"]
-}
-
-action "node 6: install" {
-  uses = "./actions/nvm"
-  args = "n 6"
-}
-
-action "node 6: build" {
-  uses = "./actions/nvm"
-  args = "yarn install --frozen-lockfile --non-interactive"
-  needs = ["node 6: install"]
-}
-
-action "node 6: test" {
-  uses = "./actions/nvm"
-  needs = ["node 6: build"]
-  args = "yarn run test"
+  resolves = ["node 10: test"]
 }
 
 action "node 10: install" {
