@@ -51,7 +51,7 @@ workflow "node6" {
 
 action "Node 6" {
   uses = "./actions/nvm"
-  args = "\"n 6\""
+  args = "n 6"
 }
 
 action "node 6: test" {
