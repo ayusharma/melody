@@ -51,7 +51,7 @@ workflow "node6" {
 
 action "Node 6" {
   uses = "./actions/nvm"
-  args = "nvm install 6"
+  args = "\"source /root/.bashrc && nvm install 6\" \"source /root/.bashrc && nvm use 6\""
 }
 
 action "node 6: test" {
