@@ -2,6 +2,7 @@
 
 set -e
 
-echo "$@"
-
-for ((i=0;i<=$#;i++)); do echo "${!i}" | bash ; done
+for var in "$@"
+do
+    echo "$var" | bash
+done
