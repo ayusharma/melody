@@ -2,8 +2,6 @@
 
 set -e
 
-source /usr/local/nvm/nvm.sh
-
 for ARG in "$@"; do
-  $ARG
+  sh -c 'source /usr/local/nvm/nvm.sh && $ARG'
 done
