@@ -2,8 +2,16 @@
 
 set -e
 
-for var in "$@"
+# for var in "$@"
+# do
+#     echo $var
+#     sh -c "$var"
+# done
+
+array=("$@")
+
+for i in "${array[@]}"
 do
-    echo $var
-    sh -c "$var"
+	echo $i
+  sh -c "$i"
 done
