@@ -57,11 +57,11 @@ action "node 10: install" {
 action "node 10: build" {
   uses = "./actions/nvm"
   needs = ["node 10: install"]
-  args = "yarn install --frozen-lockfile --non-interactive"
+  args = "n 10 && yarn install --frozen-lockfile --non-interactive"
 }
 
 action "node 10: test" {
   uses = "./actions/nvm"
   needs = ["node 10: build"]
-  args = "yarn run test"
+  args = "n 10 && yarn run test"
 }
