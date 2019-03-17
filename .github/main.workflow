@@ -2,7 +2,6 @@ workflow "build and test" {
   on = "push"
   resolves = [
     "lint",
-    "coverage",
     "bundlesize",
     "verdaccio",
     "test",
@@ -30,12 +29,6 @@ action "bundlesize" {
   uses = "./actions/cli"
   needs = ["test"]
   args = "n 8 && yarn run bundlesize"
-}
-
-action "coverage" {
-  uses = "./actions/cli"
-  needs = ["test"]
-  args = "n 8 && yarn run coverage"
 }
 
 action "verdaccio" {
