@@ -2,7 +2,7 @@
 
 set -e
 
-source $NVM_DIR/nvm.sh
+source /usr/local/nvm/nvm.sh
 
 for ARG in "$@"; do
   $ARG
