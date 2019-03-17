@@ -21,6 +21,10 @@ RUN echo 'export NVM_DIR="$NVM_DIR"'                                       >> "$
 RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.bashrc"
 RUN echo '[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # This loads nvm bash_completion' >> "$HOME/.bashrc"
 
+# nodejs and tools
+RUN bash -c 'source $NVM_DIR/nvm.sh   && \
+    npm install --prefix "$NVM_DIR"'
+
 # confirm installation
 RUN node -v
 RUN npm -v
