@@ -6,8 +6,7 @@ echo "$@"
 
 for ARG in "$@"; do
   if [[ $ARG == *"nvm"* ]]; then
-    C = echo $ARG
-    bash -c "source /usr/local/nvm/nvm.sh && $C"
+    bash -c "source /usr/local/nvm/nvm.sh && ($ARG)"
   else
     $ARG
   fi
