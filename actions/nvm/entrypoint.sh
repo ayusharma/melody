@@ -5,7 +5,7 @@ set -e
 for ARG in "$@"; do
 
   if [[ $ARG == *"nvm"* ]]; then
-    source /usr/local/nvm/nvm.sh && $ARG
+    bash -c "source /usr/local/nvm/nvm.sh && $ARG"
   else
     $ARG
   fi
