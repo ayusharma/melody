@@ -2,11 +2,9 @@
 
 set -e
 
-# for var in "$@"
-# do
-#     echo $var
-#     sh -c "$var"
-# done
+# install https://github.com/tj/n
+sh -c "npm install -g n"
+sh -c "n -V"
 
 array=("$@")
 
