@@ -4,5 +4,6 @@ set -e
 
 for var in "$@"
 do
-    echo "$var" | bash
+    echo $var
+    sh -c "$var"
 done
