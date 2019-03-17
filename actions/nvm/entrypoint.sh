@@ -4,6 +4,4 @@ set -e
 
 echo "$@"
 
-for ARG in "$@"; do
-  echo $ARG | bash
-done
+for ((i=0;i<=$#;i++)); do echo "${!i}" | bash ; done
