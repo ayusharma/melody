@@ -51,11 +51,11 @@ workflow "node6" {
 
 action "Node 6" {
   uses = "./actions/nvm"
-  args = "'nvm install 6' 'nvm use 6' 'node -v'"
+  args = "'nvm install 6' 'nvm use 6' 'echo $(node -v)'"
 }
 
 action "node 6: test" {
-  uses = "./actions/cli"
+  uses = "./actions/nvm"
   needs = ["Node 6"]
   args = "'node -v' 'yarn' 'yarn run test'"
 }
