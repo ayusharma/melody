@@ -51,7 +51,7 @@ workflow "node6" {
 
 action "Node 6" {
   uses = "./actions/nvm"
-  args = "'nvm install 6' 'nvm use 6' 'echo $(node -v)'"
+  args = "'nvm install 6' 'nvm use 6' 'node -v'"
 }
 
 action "node 6: test" {
