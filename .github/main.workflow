@@ -50,7 +50,7 @@ workflow "node6" {
 }
 
 action "Node 6" {
-  uses = "./actions/cli"
+  uses = "./actions/nvm"
   args = "'nvm install 6' 'nvm use 6' 'node -v'"
 }
 
