@@ -10,32 +10,32 @@ workflow "build and test" {
 }
 
 action "build" {
-  uses = "./actions/yarn"
-  args = "install --frozen-lockfile --non-interactive"
+  uses = "./actions/cli"
+  args = "yarn install --frozen-lockfile --non-interactive"
 }
 
 action "test" {
-  uses = "./actions/yarn"
+  uses = "./actions/cli"
   needs = ["build"]
-  args = "run test"
+  args = "yarn run test"
 }
 
 action "lint" {
-  uses = "./actions/yarn"
+  uses = "./actions/cli"
   needs = ["build"]
-  args = "run lint"
+  args = "yarn run lint"
 }
 
 action "bundlesize" {
-  uses = "./actions/yarn"
+  uses = "./actions/cli"
   needs = ["test"]
-  args = "run bundlesize"
+  args = "yarn run bundlesize"
 }
 
 action "coverage" {
-  uses = "./actions/yarn"
+  uses = "./actions/cli"
   needs = ["test"]
-  args = "run coverage"
+  args = "yarn run coverage"
 }
 
 action "verdaccio" {
@@ -50,18 +50,40 @@ workflow "node 10" {
 }
 
 action "node 10: install" {
-  uses = "./actions/nvm"
+  uses = "./actions/cli"
   args = "n 10"
 }
 
 action "node 10: build" {
-  uses = "./actions/nvm"
+  uses = "./actions/cli"
   needs = ["node 10: install"]
   args = "n 10 && yarn install --frozen-lockfile --non-interactive"
 }
 
 action "node 10: test" {
-  uses = "./actions/nvm"
+  uses = "./actions/cli"
   needs = ["node 10: build"]
   args = "n 10 && yarn run test"
+}
+
+workflow "node 6" {
+  on = "push"
+  resolves = ["node 6: test"]
+}
+
+action "node 6: install" {
+  uses = "./actions/cli"
+  args = "n 6"
+}
+
+action "node 6: build" {
+  uses = "./actions/cli"
+  needs = ["node 6: install"]
+  args = "n 6 && yarn install --frozen-lockfile --non-interactive"
+}
+
+action "node 6: test" {
+  uses = "./actions/cli"
+  needs = ["node 6: build"]
+  args = "n 6 && yarn run test"
 }
