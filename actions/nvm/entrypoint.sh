@@ -3,5 +3,11 @@
 set -e
 
 for ARG in "$@"; do
-  sh -c 'source /usr/local/nvm/nvm.sh && $ARG'
+
+  if [[ $ARG == *"nvm"* ]]; then
+    sh -c 'source /usr/local/nvm/nvm.sh && $ARG'
+  else
+   $ARG
+  fi
+  
 done
