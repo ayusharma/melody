@@ -11,31 +11,31 @@ workflow "build and test" {
 
 action "build" {
   uses = "./actions/cli"
-  args = "yarn install --frozen-lockfile --non-interactive"
+  args = "n 8 && yarn install --frozen-lockfile --non-interactive"
 }
 
 action "test" {
   uses = "./actions/cli"
   needs = ["build"]
-  args = "yarn run test"
+  args = "n 8 && yarn run test"
 }
 
 action "lint" {
   uses = "./actions/cli"
   needs = ["build"]
-  args = "yarn run lint"
+  args = "n 8 && yarn run lint"
 }
 
 action "bundlesize" {
   uses = "./actions/cli"
   needs = ["test"]
-  args = "yarn run bundlesize"
+  args = "n 8 && yarn run bundlesize"
 }
 
 action "coverage" {
   uses = "./actions/cli"
   needs = ["test"]
-  args = "yarn run coverage"
+  args = "n 8 && yarn run coverage"
 }
 
 action "verdaccio" {
