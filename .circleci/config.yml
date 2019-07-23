@@ -73,6 +73,16 @@ jobs:
           key: *repo_key
           paths:
             - ~/melody
+  lint:
+    <<: *defaults
+    <<: *default_executor
+    steps:
+      - *restore_repo
+      - run:
+          name: lint
+          command: yarn lint
+
+
   test_bundlesize:
     <<: *defaults
     <<: *default_executor
@@ -148,6 +158,10 @@ workflows:
   workflow:
     jobs:
       - prepare:
+          <<: *ignore_non_dev_branches
+      - lint:
+          requires:
+            - prepare
           <<: *ignore_non_dev_branches
       - test_node6:
           requires:
