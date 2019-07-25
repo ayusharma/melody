@@ -26,20 +26,20 @@ aliases:
     restore_cache:
       keys:
         - *repo_key
-  # - &master_branch
-  #   filters:
-  #     tags:
-  #       only: /.*/
-  #     branches:
-  #       ignore:
-  #         - /release\/.*/
-  # - &execute_on_release
-  #   filters:
-  #     tags:
-  #       only: /(v)?[0-9]+(\.[0-9]+)*/
-  #     branches:
-  #       ignore:
-  #         - /.*/
+  - &ignore_non_dev_branches
+    filters:
+      tags:
+        only: /.*/
+      branches:
+        ignore:
+          - /release\/.*/
+  - &execute_on_release
+    filters:
+      tags:
+        only: /(v)?[0-9]+(\.[0-9]+)*/
+      branches:
+        ignore:
+          - /.*/
 
 jobs:
   prepare:
@@ -122,7 +122,7 @@ jobs:
           key: *coverage_key
           paths:
           - coverage
-
+  
   canary_release:
     <<: *defaults
     <<: *default_executor
@@ -134,6 +134,7 @@ jobs:
       - run:
         name: canary
         command: yarn lerna publish --no-git-tag-version --no-push --no-git-reset --exact --force-publish=* --canary --yes --dist-tag ${CIRCLE_BRANCH} --preid ${CIRCLE_SHA1} --registry https://registry.verdaccio.org
+
 
   # coverage:
   #   <<: *defaults
@@ -170,28 +171,35 @@ workflows:
   workflow:
     jobs:
       - prepare:
+          <<: *ignore_non_dev_branches
       - lint:
           requires:
             - prepare
+          <<: *ignore_non_dev_branches
       - test_node6:
           requires:
             - prepare
+          <<: *ignore_non_dev_branches
       - test_node8:
           requires:
             - prepare
+          <<: *ignore_non_dev_branches
       - test_node10:
           requires:
             - prepare
+          <<: *ignore_non_dev_branches
       - test_bundlesize:
           requires:
             - test_node6
             - test_node8
             - test_node10
+          <<: *ignore_non_dev_branches
       - canary_release:
         requires:
-          - test_node6
-          - test_node8
-          - test_node10
+            - test_node6
+            - test_node8
+            - test_node10
+          <<: *ignore_non_dev_branches
       # - coverage:
       #     requires:  
       #       - test_bundlesize
