@@ -128,8 +128,8 @@ jobs:
     steps:
       - *restore_repo
       - run:
-        name: canary
-        command: yarn lerna publish --no-git-tag-version --no-push --no-git-reset --exact --force-publish=* --canary --yes --dist-tag ${CIRCLE_BRANCH} --preid ${CIRCLE_SHA1} --registry https://registry.verdaccio.org
+          name: canary
+          command: yarn lerna publish --no-git-tag-version --no-push --no-git-reset --exact --force-publish=* --canary --yes --dist-tag ${CIRCLE_BRANCH} --preid ${CIRCLE_SHA1} --registry https://registry.verdaccio.org
 
 
   # coverage:
