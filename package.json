@@ -1,5 +1,6 @@
 {
     "name": "melody",
+    "version": "0.0.0",
     "description": "Melody is a UI library for building JavaScript applications.",
     "license": "Apache-2.0",
     "engines": {
