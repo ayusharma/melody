@@ -17,6 +17,10 @@ steps:
 - task: NodeTool@0 
   inputs:
     versionSpec: $(node_version)
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'PR Build'
 
 - script: yarn
   displayName: 'build'
