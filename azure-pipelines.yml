@@ -8,6 +8,8 @@ pool:
 
 strategy:
   matrix:
+    node_6_x:
+      node_version: 6.x
     node_8_x:
       node_version: 8.x
     node_10_x:
@@ -17,6 +19,9 @@ steps:
 - task: NodeTool@0 
   inputs:
     versionSpec: $(node_version)
+- task: YarnInstaller@3
+  inputs:
+    versionSpec: '1.x'
     
 - script: yarn
   displayName: 'build'
