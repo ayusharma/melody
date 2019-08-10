@@ -21,7 +21,7 @@ steps:
     versionSpec: $(node_version)
 - task: YarnInstaller@3
   inputs:
-    versionSpec: '1.x'
+    versionSpec: 'x'
     
 - script: yarn
   displayName: 'build'
