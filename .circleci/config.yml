@@ -13,7 +13,7 @@ aliases:
     docker:
       - image: circleci/node:10
   - &default_executor
-    <<: *node10_executor
+    <<: *node8_executor
   - &repo_key
     repo-{{ .Branch }}-{{ .Revision }}
   - &coverage_key
