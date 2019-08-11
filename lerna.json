@@ -1,7 +1,6 @@
 {
   "version": "1.2.1",
   "npmClient": "yarn",
-  "npmClientArgs": ["--no-ci"],
   "packages": [
     "packages/*"
   ],
