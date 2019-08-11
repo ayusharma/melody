@@ -17,22 +17,16 @@ steps:
 - task: NodeTool@0 
   inputs:
     versionSpec: $(node_version)
-- task: PublishPipelineArtifact@1
+- task: Yarn@3
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: 'Pull Request'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
-- script: yarn
-  displayName: 'build'
+    projectDirectory: '$(Build.SourcesDirectory)'
 
 - script: yarn run lint
   displayName: 'lint'
 
 - script: yarn run test
   displayName: 'test'
+
+- script: yarn run test
+  displayName: 'test'
+
