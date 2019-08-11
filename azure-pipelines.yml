@@ -28,6 +28,11 @@ steps:
       $(Build.SourcesDirectory)/yarn.lock
     path: $(YARN_CACHE_FOLDER)
   displayName: Cache Yarn packages
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'PR Artifact'
+    publishLocation: 'Container'
 
 - script: yarn --frozen-lockfile
   displayName: 'install'
