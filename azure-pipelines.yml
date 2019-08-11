@@ -6,10 +6,11 @@
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+
 strategy:
   matrix:
-    node_6_x:
-      node_version: 6.x
     node_8_x:
       node_version: 8.x
     node_10_x:
@@ -19,9 +20,17 @@ steps:
 - task: NodeTool@0 
   inputs:
     versionSpec: $(node_version)
-- task: Yarn@3
+- task: CacheBeta@0
   inputs:
-    projectDirectory: '$(Build.SourcesDirectory)'
+    key: |
+      yarn
+      $(Agent.OS)
+      $(Build.SourcesDirectory)/yarn.lock
+    path: $(YARN_CACHE_FOLDER)
+  displayName: Cache Yarn packages
+
+- script: yarn --frozen-lockfile
+  displayName: 'install'
 
 - script: yarn run lint
   displayName: 'lint'
