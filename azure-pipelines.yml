@@ -17,9 +17,11 @@ strategy:
       node_version: 10.x
 
 steps:
+
 - task: NodeTool@0 
   inputs:
     versionSpec: $(node_version)
+
 - task: CacheBeta@0
   inputs:
     key: |
@@ -28,11 +30,19 @@ steps:
       $(Build.SourcesDirectory)/yarn.lock
     path: $(YARN_CACHE_FOLDER)
   displayName: Cache Yarn packages
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'PR Artifact'
     publishLocation: 'Container'
+
 
 - script: yarn --frozen-lockfile
   displayName: 'install'
@@ -42,5 +52,3 @@ steps:
 
 - script: yarn run test
   displayName: 'test'
-
-
