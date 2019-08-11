@@ -17,17 +17,16 @@ steps:
 - task: NodeTool@0 
   inputs:
     versionSpec: $(node_version)
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
-    artifact: 'PR'
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'Pull Request'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 - script: yarn
   displayName: 'build'
