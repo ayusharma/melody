@@ -3,10 +3,5 @@
   "npmClient": "yarn",
   "packages": [
     "packages/*"
-  ],
-  "command": {
-    "version": {
-      "message": "[github-actions] publish %s"
-    }
-  }
+  ]
 }
