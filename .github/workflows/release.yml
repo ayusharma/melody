@@ -23,7 +23,7 @@ jobs:
   #       run: yarn run bundlesize
 
   release:
-    # needs: build_test_lint
+    # needs: build_test_lint 
     name: Publish Melody
     runs-on: ubuntu-latest
     steps:
