@@ -35,11 +35,14 @@ jobs:
       
       - name: yarn install and build
         run: yarn
+        
       
       - name: 
         id: 'is_release_commit'
         uses: ayusharma/melody/actions/check-release-commit@migration-to-new-github-action-api
 
+      - name: new branch
+        run: git checkout -b preparing-melody-for-release-in-ci
       
       - name: release melody
         if: steps.is_release_commit.outputs.result == 1
