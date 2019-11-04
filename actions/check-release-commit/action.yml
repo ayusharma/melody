@@ -3,6 +3,10 @@ name: Check release commit
 
 description: 'check melody release commit'
 
+output:
+  result:
+    descriptions: commit message or false
+
 runs:
   using: 'node12'
   main: 'main.js'

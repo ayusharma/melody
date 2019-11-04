@@ -1,6 +1,10 @@
 name: Node CI
 
-on: [push,pull_request]
+on:
+  pull_request:
+  push:
+    branches:
+      - '!master'
 
 jobs:
   ci:
@@ -22,3 +26,4 @@ jobs:
       run: yarn run test
     - name: bundlesize
       run: yarn run bundlesize
+      
