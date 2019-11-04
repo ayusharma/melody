@@ -1,10 +1,5 @@
 #!/usr/bin/env node
 
-/**
- * Check the commit formatting.
- * eg. v1.0.2
- */
-
 const exec = require('@actions/exec');
 
 const re = new RegExp(/^v(\d+\.){2}\d+(-\S+)?$/);
