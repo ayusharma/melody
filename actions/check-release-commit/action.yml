@@ -3,9 +3,9 @@ name: Check release commit
 
 description: 'check melody release commit'
 
-output:
+outputs:
   result:
-    descriptions: commit message or false
+    descriptions: 1 or 0
 
 runs:
   using: 'node12'

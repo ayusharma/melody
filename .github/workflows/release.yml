@@ -39,8 +39,8 @@ jobs:
 
       
       - name: release melody
-        if: steps.is_release_commit.output.result != false
-        run: yarn lerna publish from-git --force-publish=* --yes --registry https://registry.verdaccio.org
+        if: steps.is_release_commit.outputs.result == 1
+        run: yarn lerna version $(git log -1 --pretty=format:%s) --no-push  --yes --force-publish=*
         
 
 

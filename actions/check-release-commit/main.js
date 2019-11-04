@@ -11,7 +11,7 @@ const re = new RegExp(/^v(\d+\.){2}\d+(-\S+)?$/);
 const commitMessage = exec(`git log -1 --pretty=format:%s ${process.env.GITHUB_SHA}`);
 
 if (commitMessage.match(re) === null) {
-    core.setOutput("result", 0);
+    core.setOutput("result", "0");
 } else {
-    core.setOutput("result", commitMessage);
+    core.setOutput("result", "1");
 }
