@@ -21,11 +21,6 @@ jobs:
         run: yarn run test
       - name: bundlesize
         run: yarn run bundlesize
-      - name: upload production artifacts
-        uses: actions/upload-artifact@master
-        with:
-          name: release-artifact
-          path: './'
 
   release:
     needs: build_test_lint
@@ -33,12 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: trivago/melody/actions/check-release-commit@master
+      - uses: trivago/melody/actions/check-release-commit@migration-to-new-github-action-api
       - uses: actions/setup-node@v1
         with:
           node-version: '8.x'
-      - name: download production artifact
-        uses: actions/download-artifact@master
-        with:
-          name: release-artifact
-      
+
