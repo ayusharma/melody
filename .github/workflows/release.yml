@@ -1,0 +1,44 @@
+name: release
+
+on:
+  push:
+    branches:
+      - migration-to-new-github-action-api
+jobs:
+  build_test_lint:
+    name: Node Smoke Test Before Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '8.x'
+    - name: yarn install and build
+      run: yarn
+    - name: lint
+      run: yarn run lint
+    - name: test
+      run: yarn run test
+    - name: bundlesize
+      run: yarn run bundlesize
+    - name: upload production artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: release-artifact
+        path: './'
+
+  release:
+    needs: build_test_lint
+    name: Publish Melody
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: trivago/melody/actions/check-release-commit
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '8.x'
+      - name: download production artifact
+        uses: actions/download-artifact@master
+        with:
+          name: release-artifact
+      

@@ -5,13 +5,12 @@
  * eg. v1.0.2
  */
 
-const temp = process.env.GITHUB_SHA;
-const commit = temp.trim();
-console.log(commit);
+const exec = require('@actions/exec');
 
 const re = new RegExp(/^v(\d+\.){2}\d+(-\S+)?$/);
+const commitMessage = exec.exec(`git log -1 --pretty=format:%s${process.env.GITHUB_SHA}}`);
 
-if (commit.match(re) === null) {
+if (commitMessage.match(re) === null) {
     console.error('Not a release commit');
     process.exit(78);
 } else {
