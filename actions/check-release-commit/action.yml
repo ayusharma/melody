@@ -4,8 +4,5 @@ name: Check release commit
 description: 'check melody release commit'
 
 runs:
-  using: node12
-  main: main.js
-
-branding:
-  icon: label
+  using: 'node12'
+  main: 'main.js'
