@@ -57,7 +57,7 @@ jobs:
 
       - name: publish melody
         if: steps.is_release_commit.outputs.result == 1
-        run: yarn lerna publish from-git --force-publish=* --yes --registry
+        run: yarn lerna publish from-git --force-publish=* --yes --registry https://registry.verdaccio.org
         
       - name: push melody tags to github
         if: steps.is_release_commit.outputs.result == 1
