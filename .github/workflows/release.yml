@@ -42,9 +42,7 @@ jobs:
         uses: ayusharma/melody/actions/check-release-commit@migration-to-new-github-action-api
 
       - name: setup git
-        run: git checkout -b preparing-melody-for-release-in-ci |
-        git config --global user.email "melody-bot@trivago.com" |
-        git config --global user.name "melody-bot"
+        run: git checkout -b preparing-melody-for-release-in-ci && git config --global user.email "melody-bot@trivago.com" && git config --global user.name "melody-bot"
       
       - name: release melody
         if: steps.is_release_commit.outputs.result == 1
