@@ -45,15 +45,15 @@ jobs:
         
       - name: setup git
         if: steps.is_release_commit.outputs.result == 1
-        run: git checkout -b preparing-melody-for-release-in-ci && git config --global user.email "melody-bot@trivago.com" && git config --global user.name "melody-bot"
+        run: git checkout -b preparing-melody-for-npm-publish && git config --global user.email "melody-bot@trivago.com" && git config --global user.name "melody-bot"
+
+      - name: add npm token
+        if: steps.is_release_commit.outputs.result == 1
+        run: echo "//registry.verdaccio.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
       
       - name: version melody
         if: steps.is_release_commit.outputs.result == 1
         run: yarn lerna version $(git log -1 --pretty=format:%s) --no-push  --yes --force-publish=*
-      
-      - name: version melody
-        if: steps.is_release_commit.outputs.result == 1
-        run: git log
         
       - name: push melody tags to github
         if: steps.is_release_commit.outputs.result == 1
