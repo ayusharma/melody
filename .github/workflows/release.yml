@@ -27,6 +27,10 @@ jobs:
     name: Publish Melody
     runs-on: ubuntu-latest
     steps:
+      - name: 
+        id: 'is_release_commit'
+        uses: ayusharma/melody/actions/check-release-commit@migration-to-new-github-action-api
+      
       - uses: actions/checkout@v1
 
       - uses: actions/setup-node@v1
@@ -37,9 +41,7 @@ jobs:
         run: yarn
         
       
-      - name: 
-        id: 'is_release_commit'
-        uses: ayusharma/melody/actions/check-release-commit@migration-to-new-github-action-api
+      
 
       - name: setup git
         run: git checkout -b preparing-melody-for-release-in-ci && git config --global user.email "melody-bot@trivago.com" && git config --global user.name "melody-bot"
