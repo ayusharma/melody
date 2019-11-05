@@ -35,16 +35,16 @@ jobs:
       
 
       - uses: actions/setup-node@v1
+        if: steps.is_release_commit.outputs.result == 1
         with:
           node-version: '8.x'
       
       - name: yarn install and build
+        if: steps.is_release_commit.outputs.result == 1
         run: yarn
         
-      
-      
-
       - name: setup git
+        if: steps.is_release_commit.outputs.result == 1
         run: git checkout -b preparing-melody-for-release-in-ci && git config --global user.email "melody-bot@trivago.com" && git config --global user.name "melody-bot"
       
       - name: version melody
@@ -53,4 +53,4 @@ jobs:
         
       - name: push melody tags to github
         if: steps.is_release_commit.outputs.result == 1
-        run: git push https://$MELODY_TOKEN@github.com/ayusharma/melody.git migration-to-new-github-action-api --follow-tags
+        run: git push https://${{ secrets.GITHUB_TOKEN }}@github.com/ayusharma/melody.git migration-to-new-github-action-api --follow-tags
