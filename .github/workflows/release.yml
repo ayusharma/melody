@@ -50,6 +50,10 @@ jobs:
       - name: version melody
         if: steps.is_release_commit.outputs.result == 1
         run: yarn lerna version $(git log -1 --pretty=format:%s) --no-push  --yes --force-publish=*
+      
+      - name: version melody
+        if: steps.is_release_commit.outputs.result == 1
+        run: git log
         
       - name: push melody tags to github
         if: steps.is_release_commit.outputs.result == 1
