@@ -57,4 +57,4 @@ jobs:
         
       - name: push melody tags to github
         if: steps.is_release_commit.outputs.result == 1
-        run: git push https://${{ secrets.MELODY_TOKEN }}@github.com/ayusharma/melody.git migration-to-new-github-action-api --follow-tags
+        run: git push https://${{ secrets.MELODY_TOKEN }}@github.com/ayusharma/melody.git HEAD:migration-to-new-github-action-api --follow-tags
